@@ -1,0 +1,5 @@
+com\niit\controller\UserController.class
+com\niit\models\User.class
+com\niit\dao\UserDAO.class
+com\niit\daoimpl\UserDAOImpl.class
+com\niit\config\ApplicationContextConfig.class
