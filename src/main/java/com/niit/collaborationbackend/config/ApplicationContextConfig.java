@@ -17,7 +17,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.niit.collaborationbackend.dao.BlogDAO;
 import com.niit.collaborationbackend.dao.BlogLikesDAO;
-import com.niit.collaborationbackend.dao.ForumCommentDAO;
 import com.niit.collaborationbackend.dao.ForumDAO;
 import com.niit.collaborationbackend.dao.FriendDAO;
 import com.niit.collaborationbackend.dao.JobDAO;
@@ -48,7 +47,7 @@ public class ApplicationContextConfig {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
 		dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
-		dataSource.setUsername("MOUNIKA");
+		dataSource.setUsername("mounika");
 		dataSource.setPassword("mounika");
 		System.out.println("Datasource");
 		return dataSource;
@@ -96,12 +95,14 @@ public class ApplicationContextConfig {
 	@Autowired
 	@Bean(name = "userDAO")
 	public UserDAO getUserDao(SessionFactory sessionFactory) {
+		System.out.println("user done");
 			return new UserDAOImpl(sessionFactory);
 	}
 	
 	@Autowired
 	@Bean(name = "blogDAO")
 	public BlogDAO getBlogDAO(SessionFactory sessionFactory) {
+		System.out.println("blog id  done");
 		return new BlogDAOImpl(sessionFactory);
 	}
 
@@ -120,13 +121,13 @@ public JobDAO getJobDao(SessionFactory sessionFactory) {
 @Autowired
 @Bean(name = "forumDAO")
 public ForumDAO getForumDao(SessionFactory sessionFactory) {
-	System.out.println("Job is done");
+	System.out.println("forum is done");
 	return new ForumDAOImpl(sessionFactory);	
 }
 @Autowired
 @Bean(name = "forumCommentDAO")
 public ForumCommentDAOImpl getForumCommentDao(SessionFactory sessionFactory) {
-	System.out.println("Job is done");
+	System.out.println("forumcomment is done");
 		return new ForumCommentDAOImpl(sessionFactory);
 }
 @Autowired

@@ -10,13 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.niit.collaborationbackend.dao.ForumCommentDAO;
 import com.niit.collaborationbackend.model.ForumComment;
 
 @Repository(value="forumCommentDAOImpl")
-public class ForumCommentDAOImpl {
+public class ForumCommentDAOImpl implements ForumCommentDAO {
 
 	@Autowired
+	
 	private SessionFactory sessionFactory;
+	
 	public ForumCommentDAOImpl(SessionFactory sessionFactory) {
 		this.sessionFactory=sessionFactory;
 	}

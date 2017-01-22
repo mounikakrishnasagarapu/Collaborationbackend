@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.collaborationbackend.dao.FriendDAO;
+import com.niit.collaborationbackend.dao.UserDAO;
 import com.niit.collaborationbackend.model.Friend;
 import com.niit.collaborationbackend.model.User;
 
@@ -22,7 +23,7 @@ public class FriendController {
 	@Autowired
 	private FriendDAO friendDAO;
 	@Autowired
-	private User usersDAO;
+	private UserDAO userDAO;
 
 	@PostMapping(value="/sendrequest/{fid}")
 	public ResponseEntity<Friend> newfriend(Friend friend,@PathVariable("fid") String fid,HttpSession session){

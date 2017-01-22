@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table(name="blogdetails")
+@Table
 @Component
 
 public class Blog {
@@ -18,7 +18,7 @@ public class Blog {
 	@GeneratedValue
 	private int id;
 	private String title;
-	private int userid;
+	private String userid;
 	private Date doc;
 	private String content;
 	public int getId() {
@@ -30,12 +30,7 @@ public class Blog {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public int getUserid() {
-		return userid;
-	}
-	public void setUserid(int userid) {
-		this.userid = userid;
-	}
+	
 	public Date getDoc() {
 		return doc;
 	}
@@ -50,5 +45,15 @@ public class Blog {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public String getUserid() {
+		return userid;
+	}
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+	public void setBloglike(int size) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -14,12 +14,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import com.niit.collaborationbackend.dao.ForumCommentDAO;
 import com.niit.collaborationbackend.model.ForumComment;
 
+
+
 @RestController
 public class ForumCommentController {
+
 	@Autowired
 	private ForumCommentDAO forumCommentDAO;
 	
@@ -40,4 +42,3 @@ public class ForumCommentController {
 		return new ResponseEntity<List<ForumComment>>(comments,HttpStatus.OK);
 	}
 }
-
