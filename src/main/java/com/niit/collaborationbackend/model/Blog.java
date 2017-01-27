@@ -21,6 +21,7 @@ public class Blog {
 	private String userid;
 	private Date doc;
 	private String content;
+	private Integer bloglike;
 	public int getId() {
 		return id;
 	}
@@ -52,8 +53,11 @@ public class Blog {
 	public void setUserid(String userid) {
 		this.userid = userid;
 	}
-	public void setBloglike(int size) {
-		// TODO Auto-generated method stub
-		
+	public Integer getBloglike() {
+		return bloglike;
 	}
+	public void setBloglike(Integer bloglike) {
+		this.bloglike = bloglike;
+	}
+	
 }

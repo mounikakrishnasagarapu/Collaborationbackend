@@ -21,7 +21,6 @@ import com.niit.collaborationbackend.model.Blog;
 import com.niit.collaborationbackend.model.BlogLikes;
 
 @RestController
-
 public class BlogController {
 	@Autowired
 	private BlogDAO blogDAO;

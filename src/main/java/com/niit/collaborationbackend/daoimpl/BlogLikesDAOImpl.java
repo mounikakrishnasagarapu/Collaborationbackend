@@ -50,7 +50,7 @@ public class BlogLikesDAOImpl implements BlogLikesDAO {
 	public BlogLikes list(int uid, int bid) {
 		String hql="from Bloglikes where blogid='"+bid+"' and userid='"+uid+"'";
 		Query query=sessionFactory.getCurrentSession().createQuery(hql);
-		List<BlogLikes>list= query.list();
+List<BlogLikes>list= query.list();
 		
 		if(list==null)
 		{
@@ -62,8 +62,6 @@ public class BlogLikesDAOImpl implements BlogLikesDAO {
 		}
 		
 	}
-
-	
 
 	@Transactional
 	public List<BlogLikes> bloglist(int bid) {

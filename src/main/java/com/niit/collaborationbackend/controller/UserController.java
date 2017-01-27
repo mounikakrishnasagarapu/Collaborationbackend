@@ -14,57 +14,57 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.niit.collaborationbackend.dao.UserDAO;
-import com.niit.collaborationbackend.model.User;
+import com.niit.collaborationbackend.dao.UsersDAO;
+import com.niit.collaborationbackend.model.Users;
 
 @RestController
 public class UserController {
 	@Autowired
-	private UserDAO userDAO;
+	private UsersDAO usersDAO;
 
 	@PostMapping(value = "/register")
-	public ResponseEntity<User> adduser(@RequestBody User user) {
+	public ResponseEntity<Users> adduser(@RequestBody Users users) {
 		System.out.println("hello");
-		user.setStatus('n');
-		user.setIsonline('N');
-		userDAO.saveOrUpdate(user);
-		return new ResponseEntity<User>(user, HttpStatus.OK);
+		users.setStatus('n');
+		users.setIsonline('N');
+		usersDAO.saveOrUpdate(users);
+		return new ResponseEntity<Users>(users, HttpStatus.OK);
 
 	}
 
-	@GetMapping(value = "/user")
-	public ResponseEntity<List<User>> listuser() {
-		System.out.println("list of user");
-		List<User> user1 = userDAO.list();
-		return new ResponseEntity<List<User>>(user1, HttpStatus.OK);
+	@GetMapping(value = "/users")
+	public ResponseEntity<List<Users>> listuser() {
+		System.out.println("list of users");
+		List<Users> users1 = usersDAO.list();
+		return new ResponseEntity<List<Users>>(users1, HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/oneuser")
-	public ResponseEntity<User> oneuser(HttpSession session) {
+	public ResponseEntity<Users> oneuser(HttpSession session) {
 		String username = (String) session.getAttribute("username");
-		User oneuser = userDAO.profileof(username);
-		return new ResponseEntity<User>(oneuser, HttpStatus.OK);
+		Users oneuser = usersDAO.profileof(username);
+		return new ResponseEntity<Users>(oneuser, HttpStatus.OK);
 	}
 	@PostMapping("/imageUpload")
 	public void ImageUpload(@RequestBody MultipartFile file,HttpSession session) throws IOException {
 		
 		String username = (String) session.getAttribute("username"); /*Get Logged in Username*/
-		User user=userDAO.profileof(username);					/*Get user object based on username*/
+		Users users=usersDAO.profileof(username);					/*Get user object based on username*/
 		System.out.println(file.getContentType()+'\n'+file.getName()+'\n'+file.getSize()+'\n'+file.getOriginalFilename());
-		user.setImage(file.getBytes());
-		userDAO.saveOrUpdate(user);
+		users.setImage(file.getBytes());
+		usersDAO.saveOrUpdate(users);
 	}
 
 	@GetMapping("/profileimage")
-	public ResponseEntity<User> profileimage(HttpSession session){
+	public ResponseEntity<Users> profileimage(HttpSession session){
 		int uid=(Integer) session.getAttribute("uid");
-		User user=userDAO.oneuser(uid);
-		return new ResponseEntity<User>(user, HttpStatus.OK);
+		Users users=usersDAO.oneuser(uid);
+		return new ResponseEntity<Users>(users, HttpStatus.OK);
 	}
 	@GetMapping("/nonfriends")
-	public ResponseEntity<List<User>> nonfriends(HttpSession session){
+	public ResponseEntity<List<Users>> nonfriends(HttpSession session){
 		int uid=(Integer) session.getAttribute("uid");
-		List<User> nonfriends=userDAO.nonfriends(uid);
-		return new ResponseEntity<List<User>>(nonfriends,HttpStatus.OK);
+		List<Users> nonfriends=usersDAO.nonfriends(uid);
+		return new ResponseEntity<List<Users>>(nonfriends,HttpStatus.OK);
 	}
 	}

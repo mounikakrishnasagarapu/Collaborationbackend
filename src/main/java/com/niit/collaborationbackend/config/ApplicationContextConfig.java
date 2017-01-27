@@ -17,24 +17,25 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.niit.collaborationbackend.dao.BlogDAO;
 import com.niit.collaborationbackend.dao.BlogLikesDAO;
+import com.niit.collaborationbackend.dao.ForumCommentDAO;
 import com.niit.collaborationbackend.dao.ForumDAO;
 import com.niit.collaborationbackend.dao.FriendDAO;
 import com.niit.collaborationbackend.dao.JobDAO;
-import com.niit.collaborationbackend.dao.UserDAO;
+import com.niit.collaborationbackend.dao.UsersDAO;
 import com.niit.collaborationbackend.daoimpl.BlogDAOImpl;
 import com.niit.collaborationbackend.daoimpl.BlogLikesDAOImpl;
 import com.niit.collaborationbackend.daoimpl.ForumCommentDAOImpl;
 import com.niit.collaborationbackend.daoimpl.ForumDAOImpl;
 import com.niit.collaborationbackend.daoimpl.FriendDAOImpl;
 import com.niit.collaborationbackend.daoimpl.JobDAOImpl;
-import com.niit.collaborationbackend.daoimpl.UserDAOImpl;
+import com.niit.collaborationbackend.daoimpl.UsersDAOImpl;
 import com.niit.collaborationbackend.model.Blog;
 import com.niit.collaborationbackend.model.BlogLikes;
 import com.niit.collaborationbackend.model.Forum;
 import com.niit.collaborationbackend.model.ForumComment;
 import com.niit.collaborationbackend.model.Friend;
 import com.niit.collaborationbackend.model.Job;
-import com.niit.collaborationbackend.model.User;
+import com.niit.collaborationbackend.model.Users;
 
 
 
@@ -70,12 +71,12 @@ public class ApplicationContextConfig {
 		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
 		sessionBuilder.addProperties(getHibernateProperties());
 		
-		sessionBuilder.addAnnotatedClasses(User.class);
-		sessionBuilder.addAnnotatedClass(Blog.class);
-		sessionBuilder.addAnnotatedClass(Friend.class);
-		sessionBuilder.addAnnotatedClass(Job.class);
-		sessionBuilder.addAnnotatedClass(Forum.class);
-		sessionBuilder.addAnnotatedClass(ForumComment.class);
+		sessionBuilder.addAnnotatedClasses(Users.class);
+		sessionBuilder.addAnnotatedClasses(Blog.class);
+		sessionBuilder.addAnnotatedClasses(Friend.class);
+		sessionBuilder.addAnnotatedClasses(Job.class);
+		sessionBuilder.addAnnotatedClasses(Forum.class);
+		sessionBuilder.addAnnotatedClasses(ForumComment.class);
 		sessionBuilder.addAnnotatedClasses(BlogLikes.class);
 
         	System.out.println("Session");
@@ -93,47 +94,46 @@ public class ApplicationContextConfig {
 
 	
 	@Autowired
-	@Bean(name = "userDAO")
-	public UserDAO getUserDao(SessionFactory sessionFactory) {
-		System.out.println("user done");
-			return new UserDAOImpl(sessionFactory);
+	@Bean(name = "usersDAO")
+	public UsersDAO getUsersDao(SessionFactory sessionFactory) {
+		System.out.println("Usr is doen");
+			return new UsersDAOImpl(sessionFactory);
+		
 	}
-	
 	@Autowired
 	@Bean(name = "blogDAO")
-	public BlogDAO getBlogDAO(SessionFactory sessionFactory) {
-		System.out.println("blog id  done");
-		return new BlogDAOImpl(sessionFactory);
+	public BlogDAO getBlogDao(SessionFactory sessionFactory) {
+		System.out.println("blog is done");
+			return new BlogDAOImpl(sessionFactory);
 	}
-
-@Autowired
-@Bean(name = "friendDAO")
-public FriendDAO getFriendDao(SessionFactory sessionFactory) {
-	System.out.println("Friend is done");
-		return new FriendDAOImpl(sessionFactory);
-}
-@Autowired
-@Bean(name = "jobDAO")
-public JobDAO getJobDao(SessionFactory sessionFactory) {
-	System.out.println("Job is done");
-		return new JobDAOImpl(sessionFactory);
-}
-@Autowired
-@Bean(name = "forumDAO")
-public ForumDAO getForumDao(SessionFactory sessionFactory) {
-	System.out.println("forum is done");
-	return new ForumDAOImpl(sessionFactory);	
-}
-@Autowired
-@Bean(name = "forumCommentDAO")
-public ForumCommentDAOImpl getForumCommentDao(SessionFactory sessionFactory) {
-	System.out.println("forumcomment is done");
-		return new ForumCommentDAOImpl(sessionFactory);
-}
-@Autowired
-@Bean(name = "blogLikesDAO")
-public BlogLikesDAO getBlogLikesDao(SessionFactory sessionFactory) {
-	System.out.println("BlogLikes is done");
-	return new BlogLikesDAOImpl(sessionFactory);
-}
+	@Autowired
+	@Bean(name = "friendDAO")
+	public FriendDAO getFriendDao(SessionFactory sessionFactory) {
+		System.out.println("Friend is done");
+			return new FriendDAOImpl(sessionFactory);
+	}
+	@Autowired
+	@Bean(name = "jobDAO")
+	public JobDAO getJobDao(SessionFactory sessionFactory) {
+		System.out.println("Job is done");
+			return new JobDAOImpl(sessionFactory);
+	}
+	@Autowired
+	@Bean(name = "forumDAO")
+	public ForumDAO getForumDao(SessionFactory sessionFactory) {
+		System.out.println("Forum is done");
+			return new ForumDAOImpl(sessionFactory);
+	}
+	@Autowired
+	@Bean(name = "forumCommentDAO")
+	public ForumCommentDAO getForumCommentDao(SessionFactory sessionFactory) {
+		System.out.println("Forum Comment is done");
+			return new ForumCommentDAOImpl(sessionFactory);
+	}
+	@Autowired
+	@Bean(name = "blogLikesDAO")
+	public BlogLikesDAO getBlogLikesDao(SessionFactory sessionFactory) {
+		System.out.println("BlogLikes is done");
+			return new BlogLikesDAOImpl(sessionFactory);
+	}
 }

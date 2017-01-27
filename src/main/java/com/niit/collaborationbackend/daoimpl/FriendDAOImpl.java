@@ -79,6 +79,7 @@ public List<Friend> setonline(String uid) {
 	List<Friend> list=query.list();
 	return list;
 }
+
 }
 
 
